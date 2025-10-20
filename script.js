@@ -59,10 +59,9 @@ function showImage() {
 }
 
 if (profileImage) {
-    if (!profileImage.getAttribute('src')) {
-        showPlaceholder();
-    }
-
+    // Show image by default, only show placeholder if there's an error
+    showImage();
+    
     profileImage.addEventListener('error', showPlaceholder);
     profileImage.addEventListener('load', () => {
         // Only show image if it successfully loaded and has natural dimensions

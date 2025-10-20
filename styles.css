@@ -218,8 +218,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%; /* Crop from top and bottom, focus on face */
-    display: none; /* hidden until a valid src loads */
+    object-position: center 30%; /* Crop more from top and bottom, focus on face */
+    display: block; /* show the image by default */
 }
 
 .profile-placeholder {
