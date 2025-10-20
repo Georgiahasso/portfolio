@@ -1,0 +1,32 @@
+{
+  "project": "Google Sheets → Klaviyo Lead Sync Automation",
+  "description": "Automates new lead capture and segmentation directly from Google Sheets into Klaviyo",
+  "workflow": {
+    "trigger": "New sign-up detected in shared Google Sheet",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Detects whether each lead is B2B or B2C",
+        "details": "Analyzes company domain, job title, and other indicators"
+      },
+      {
+        "step": 2,
+        "action": "Automatically adds them to the correct Klaviyo list",
+        "details": "Segments leads for targeted campaigns based on business type"
+      },
+      {
+        "step": 3,
+        "action": "Catches any sync errors silently",
+        "details": "Ensures smooth operation with error handling and logging"
+      }
+    ]
+  },
+  "results": {
+    "manual_csv_uploads": "Eliminated",
+    "list_updates": "Instant and accurate",
+    "lead_segmentation": "Automated B2B/B2C classification",
+    "campaign_targeting": "Improved precision"
+  },
+  "technologies": ["Google Sheets API", "Klaviyo API", "Webhook automation", "Lead scoring logic"],
+  "tags": ["Klaviyo", "Webhooks", "Google Sheets"]
+}
