@@ -81,7 +81,19 @@ function openVideoModal(videoId) {
     if (modal && video) {
         modal.classList.add('show');
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        video.play();
+        
+        // Load and play video
+        video.load(); // Reload the video element
+        
+        // Try to play, but don't force it (browsers may block autoplay)
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('Autoplay prevented:', error);
+                // Video will play when user clicks play button
+            });
+        }
     }
 }
 
@@ -115,4 +127,26 @@ document.addEventListener('keydown', (e) => {
         closeVideoModal();
     }
 });
+
+// Video error handling
+const birthwiseVideo = document.getElementById('birthwise-video');
+if (birthwiseVideo) {
+    birthwiseVideo.addEventListener('error', (e) => {
+        console.error('Video error:', e);
+        const error = birthwiseVideo.error;
+        if (error) {
+            console.error('Error code:', error.code);
+            console.error('Error message:', error.message);
+            console.error('Video source:', birthwiseVideo.currentSrc);
+        }
+    });
+    
+    birthwiseVideo.addEventListener('loadeddata', () => {
+        console.log('Video loaded successfully');
+    });
+    
+    birthwiseVideo.addEventListener('canplay', () => {
+        console.log('Video can start playing');
+    });
+}
 
