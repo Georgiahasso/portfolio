@@ -82,17 +82,13 @@ function openVideoModal(videoId) {
         modal.classList.add('show');
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
         
-        // Load and play video
-        video.load(); // Reload the video element
-        
-        // Try to play, but don't force it (browsers may block autoplay)
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log('Autoplay prevented:', error);
-                // Video will play when user clicks play button
-            });
+        // If it's a YouTube iframe, reload it to ensure it's ready
+        if (video.tagName === 'IFRAME') {
+            const src = video.src;
+            video.src = '';
+            setTimeout(() => {
+                video.src = src;
+            }, 100);
         }
     }
 }
@@ -104,9 +100,17 @@ function closeVideoModal() {
     if (modal) {
         modal.classList.remove('show');
         document.body.style.overflow = ''; // Restore scrolling
-        if (video) {
-            video.pause();
-            video.currentTime = 0; // Reset video to beginning
+        
+        // If it's a YouTube iframe, pause it by removing and re-adding src
+        if (video && video.tagName === 'IFRAME') {
+            const src = video.src;
+            video.src = '';
+            // Reset src when opening again
+            setTimeout(() => {
+                if (modal.classList.contains('show')) {
+                    video.src = src;
+                }
+            }, 300);
         }
     }
 }
@@ -128,25 +132,5 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Video error handling
-const birthwiseVideo = document.getElementById('birthwise-video');
-if (birthwiseVideo) {
-    birthwiseVideo.addEventListener('error', (e) => {
-        console.error('Video error:', e);
-        const error = birthwiseVideo.error;
-        if (error) {
-            console.error('Error code:', error.code);
-            console.error('Error message:', error.message);
-            console.error('Video source:', birthwiseVideo.currentSrc);
-        }
-    });
-    
-    birthwiseVideo.addEventListener('loadeddata', () => {
-        console.log('Video loaded successfully');
-    });
-    
-    birthwiseVideo.addEventListener('canplay', () => {
-        console.log('Video can start playing');
-    });
-}
+// YouTube iframe is now used, no need for video error handling
 
