@@ -242,6 +242,53 @@
               </div>
             </div>
           </a>
+
+          <div class="project-card birthwise-card">
+            <a
+              href="https://birthbot.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-image-link"
+            >
+              <div class="project-image bg-teal dashboard-preview">
+                <div class="project-icon">🤱</div>
+                <div class="click-overlay">
+                  <span class="click-text">👆 Click to view live app</span>
+                </div>
+              </div>
+            </a>
+            <div class="project-content">
+              <h3>Birthwise - Birth Bot</h3>
+              <p>
+                A passion project using Retrieval-Augmented Generation (RAG) to
+                answer questions based on scientific information about birth and
+                pregnancy. Built as an AI-powered chatbot that provides
+                evidence-based responses, helping users make informed decisions
+                with accurate, research-backed information.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">RAG</span>
+                <span class="project-tag">AI/ML</span>
+                <span class="project-tag">Scientific Research</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  href="https://birthbot.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-link-btn"
+                >
+                  View Live App →
+                </a>
+                <button
+                  class="video-demo-btn"
+                  onclick="openVideoModal('birthwise-video')"
+                >
+                  🎥 Watch Demo
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -258,5 +305,27 @@
         >
       </div>
     </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+      <div class="video-modal-content">
+        <span class="video-modal-close" onclick="closeVideoModal()"
+          >&times;</span
+        >
+        <div class="video-wrapper">
+          <video id="birthwise-video" controls>
+            <!-- Replace src with your video file path or URL -->
+            <source src="Images/birthwise-demo.mp4" type="video/mp4" />
+            <!-- Add fallback for different video formats if needed -->
+            <source src="Images/birthwise-demo.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-description">
+          Watch me explain how Birthwise works and how I added scientific
+          information using RAG (Retrieval-Augmented Generation).
+        </p>
+      </div>
+    </div>
   </body>
 </html>

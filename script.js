@@ -73,3 +73,46 @@ if (profileImage) {
     });
 }
 
+// Video Modal Functions
+function openVideoModal(videoId) {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById(videoId);
+    
+    if (modal && video) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        video.play();
+    }
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('birthwise-video');
+    
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+        if (video) {
+            video.pause();
+            video.currentTime = 0; // Reset video to beginning
+        }
+    }
+}
+
+// Close modal when clicking outside the video content
+const videoModal = document.getElementById('video-modal');
+if (videoModal) {
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+            closeVideoModal();
+        }
+    });
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeVideoModal();
+    }
+});
+
