@@ -371,6 +371,8 @@ body {
 .project-icon {
     font-size: 4rem;
     z-index: 1;
+    position: relative;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .click-overlay {
@@ -386,10 +388,16 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 8px;
+    z-index: 10;
 }
 
 .dashboard-preview:hover .click-overlay {
     opacity: 1;
+}
+
+.dashboard-preview:hover .project-icon {
+    opacity: 0.2;
+    transform: scale(0.9);
 }
 
 .dashboard-preview:hover .dashboard-screenshot {
